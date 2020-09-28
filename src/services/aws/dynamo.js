@@ -1,10 +1,6 @@
 /* eslint-disable camelcase */
 var AWS = require('aws-sdk');
-if (AWS.config) {
-  AWS.config.update({
-    region: 'us-east-1',
-  });
-}
+
 var logger = require('../../config/logger.js');
 
 var dynamodb = new AWS.DynamoDB({
