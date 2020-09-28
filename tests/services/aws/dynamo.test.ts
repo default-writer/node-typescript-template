@@ -82,7 +82,8 @@ describe('test services/aws/dynamo update_dynamo', () => {
     expect(actual).toEqual(undefined);
   });
   it('should raise on upload correctly', async () => {
-    DynamoDB.updateItem.mockResolvedValueOnce(() => { throw new Error(); });
+    const promise_mock = { promise: jest.fn(() => { throw new Error(); }) };
+    DynamoDB.updateItem.mockResolvedValueOnce(() => promise_mock);
     try {
       const last_run = new Date().getTime();
       await expect(update_dynamo('name', last_run, 'demo.my.salesforce.com')).toThrow(Error);
@@ -90,11 +91,11 @@ describe('test services/aws/dynamo update_dynamo', () => {
     }
   });
   it('should raise on upload correctly', async () => {
-    const dynamo_db_update = { updateItem: jest.fn().mockReturnThis() };
-    dynamo_db_update.updateItem.mockResolvedValueOnce(() => { throw new Error(); });
+    const promise_mock = { promise: jest.fn(() => { throw new Error(); }) };
+    const update_dynamo_mock = { updateItem: jest.fn(() => promise_mock) };
     try {
       const last_run = new Date().getTime();
-      await expect(update_dynamo('name', last_run, 'demo.my.salesforce.com', dynamo_db_update)).toThrow(Error);
+      await expect(update_dynamo('name', last_run, 'demo.my.salesforce.com', update_dynamo_mock)).toThrow(Error);
     } catch (e) {
     }
   });
