@@ -14,7 +14,7 @@ describe('test services/aws/dynamo find_last_run_dynamo', () => {
     DynamoDB.promise.mockResolvedValueOnce({
       Items: [
         {
-          rf_url: { S: 'changehealthcare--ams.my.salesforce.com' },
+          rf_url: { S: 'demo.my.salesforce.com' },
           last_succesful_run: { N: last_run.toString() },
         },
       ],
@@ -23,20 +23,20 @@ describe('test services/aws/dynamo find_last_run_dynamo', () => {
     expect(DynamoDB.scan).toBeCalledWith({
       TableName: 'name',
     });
-    expect(actual).toEqual(['changehealthcare--ams.my.salesforce.com', last_run]);
+    expect(actual).toEqual(['demo.my.salesforce.com', last_run]);
   });
   it('should raise exception on data correctly', async () => {
     DynamoDB.promise.mockResolvedValueOnce({
       Items: [
         {
-          rf_url: { S: 'changehealthcare--ams.my.salesforce.com' },
+          rf_url: { S: 'demo.my.salesforce.com' },
           last_succesful_run: {},
         },
       ],
     });
     try {
       await expect(find_last_run_dynamo('name')).toThrowError(Error);
-    } catch(e) {
+    } catch (e) {
     }
   });
   it('should not raise exception on data correctly', async () => {
@@ -67,11 +67,11 @@ describe('test services/aws/dynamo update_dynamo', () => {
   it('should upload correctly', async () => {
     DynamoDB.promise.mockResolvedValueOnce('fake response');
     const last_run = new Date().getTime();
-    const actual = await update_dynamo('name', last_run, 'changehealthcare--ams.my.salesforce.com');
+    const actual = await update_dynamo('name', last_run, 'demo.my.salesforce.com');
     expect(DynamoDB.updateItem).toBeCalledWith({
       TableName: 'name',
       Key: {
-        rf_url: { S: 'changehealthcare--ams.my.salesforce.com' },
+        rf_url: { S: 'demo.my.salesforce.com' },
         when_run: { N: '1599251805804' },
       },
       UpdateExpression: 'set last_succesful_run = :x',
@@ -85,7 +85,7 @@ describe('test services/aws/dynamo update_dynamo', () => {
     DynamoDB.updateItem.mockResolvedValueOnce(() => { throw new Error(); });
     try {
       const last_run = new Date().getTime();
-      await expect(update_dynamo('name', last_run, 'changehealthcare--ams.my.salesforce.com')).toThrow(Error);
+      await expect(update_dynamo('name', last_run, 'demo.my.salesforce.com')).toThrow(Error);
     } catch (e) {
     }
   });
@@ -94,7 +94,7 @@ describe('test services/aws/dynamo update_dynamo', () => {
     dynamo_db_update.updateItem.mockResolvedValueOnce(() => { throw new Error(); });
     try {
       const last_run = new Date().getTime();
-      await expect(update_dynamo('name', last_run, 'changehealthcare--ams.my.salesforce.com', dynamo_db_update)).toThrow(Error);
+      await expect(update_dynamo('name', last_run, 'demo.my.salesforce.com', dynamo_db_update)).toThrow(Error);
     } catch (e) {
     }
   });
