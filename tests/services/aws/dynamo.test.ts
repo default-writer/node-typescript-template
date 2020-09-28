@@ -82,8 +82,7 @@ describe('test services/aws/dynamo update_dynamo', () => {
     expect(actual).toEqual(undefined);
   });
   it('should raise on upload correctly', async () => {
-    const promise_mock = { promise: jest.fn(() => { throw new Error(); }) };
-    DynamoDB.updateItem.mockResolvedValueOnce(() => promise_mock);
+    DynamoDB.promise.mockResolvedValueOnce(jest.fn(() => { throw new Error(); }));
     try {
       const last_run = new Date().getTime();
       await expect(update_dynamo('name', last_run, 'demo.my.salesforce.com')).toThrow(Error);
