@@ -15,7 +15,7 @@ describe('test services/aws/dynamo find_last_run_dynamo', () => {
       Items: [
         {
           rf_url: { S: 'demo.my.salesforce.com' },
-          last_succesful_run: { N: last_run.toString() },
+          last_successful_run: { N: last_run.toString() },
         },
       ],
     });
@@ -30,7 +30,7 @@ describe('test services/aws/dynamo find_last_run_dynamo', () => {
       Items: [
         {
           rf_url: { S: 'demo.my.salesforce.com' },
-          last_succesful_run: {},
+          last_successful_run: {},
         },
       ],
     });
@@ -72,9 +72,9 @@ describe('test services/aws/dynamo update_dynamo', () => {
       TableName: 'name',
       Key: {
         rf_url: { S: 'demo.my.salesforce.com' },
-        when_run: { N: '1599251805804' },
+        when_run: { N: '1488140498888' },
       },
-      UpdateExpression: 'set last_succesful_run = :x',
+      UpdateExpression: 'set last_successful_run = :x',
       ExpressionAttributeValues: {
         ':x': { N: last_run.toString() },
       },

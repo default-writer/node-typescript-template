@@ -28,7 +28,7 @@ async function find_last_run_dynamo(table_name, dynamo_db) {
       logger.silly(JSON.stringify(result));
       //logger.silly(result.Items[0].last_successful_run);
       //logger.silly(result.Items[0].last_successful_run.N);
-      var str = result.Items[0].last_succesful_run.N; //TODO: this is spelled wrong change in dynamo!
+      var str = result.Items[0].last_successful_run.N; //TODO: this is spelled wrong change in dynamo!
       if (str) {
         //logger.silly(str)
         last_successful_run = Number.parseInt(str);
@@ -65,7 +65,7 @@ async function update_dynamo(table_name, last_run, url_instance, dynamo_db) {
           S: url_instance,
         },
         when_run: {
-          N: '1599251805804',
+          N: '1488140498888',
         },
       },
       UpdateExpression: 'set last_successful_run = :x',
