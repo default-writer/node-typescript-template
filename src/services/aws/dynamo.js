@@ -84,5 +84,6 @@ async function update_dynamo(table_name, last_run, url_instance, dynamo_db) {
 }
 
 module.exports = {
+  find_last_run_dynamo,
   update_dynamo,
 };
