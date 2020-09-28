@@ -1,0 +1,35 @@
+{
+    "plugins": [
+        "jest",
+        "prettier",
+        "unicorn"
+    ],
+    "extends": [
+        "eslint:recommended",
+        "plugin:jest/recommended",
+        "plugin:prettier/recommended",
+        "plugin:unicorn/recommended",
+        "prettier",
+        "prettier/unicorn"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 12
+    },
+    "env": {
+        "jest": true,
+        "commonjs": true,
+        "es2021": true,
+        "es6": true,
+        "node": true,
+        "browser": true
+    },
+    "rules": {
+        "unicorn/prevent-abbreviations": "off",
+        "unicorn/filename-case": "warn",
+        "unicorn/no-null": "warn",
+        "no-unused-vars": "warn",
+        "camelcase": "warn",
+        "func-names": "off"
+    }
+}

@@ -1,0 +1,9 @@
+[run]
+omit =
+    # omit everything in ./test
+    test/*
+    # omit this single file
+    __init__.py
+    app/main.py
+    app/api/logging/logger.py
+    *_response.py

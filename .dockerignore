@@ -1,0 +1,10 @@
+# Local build directories
+**/build/*
+
+# Ignore git directory when building docker image
+**/.git/*
+
+**/.DS_Store
+
+app/api/lib
+app/api/bin
