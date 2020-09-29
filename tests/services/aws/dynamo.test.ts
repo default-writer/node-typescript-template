@@ -4,11 +4,6 @@ import { DynamoDB, config } from '../../mocks/AWS';
 import { find_last_run_dynamo, update_dynamo } from '../../../src/services/aws/dynamo';
 
 describe('test services/aws/dynamo find_last_run_dynamo', () => {
-  it('should run AWS.config.update', async () => {
-    expect(config.update).lastCalledWith({
-      region: 'us-east-1',
-    })
-  });
   it('should read data correctly', async () => {
     const last_run = new Date().getTime();
     DynamoDB.promise.mockResolvedValueOnce({
