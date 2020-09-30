@@ -19,7 +19,18 @@
   //              "PATH": "${containerEnv:PATH}:/workspaces/build/packages/tools"
   // },
   // Add the IDs of extensions you want installed when the container is created.
-  "extensions": ["ms-azuretools.vscode-docker", "ms-python.python", "eamodio.gitlenz", "mhutchie.git-graph", "stevejpurves.cucumber", "ms-python.vscode-pylance", "ms-vscode.azure-account", "donjayamanne.githistory", "eamodio.gitlens"], //uncomment this to valdate JSON file correctly
+  "extensions": [
+    "ms-azuretools.vscode-docker",
+    "ms-python.python",
+    "eamodio.gitlenz",
+    "mhutchie.git-graph",
+    "stevejpurves.cucumber",
+    "ms-python.vscode-pylance",
+    "ms-vscode.azure-account",
+    "donjayamanne.githistory",
+    "eamodio.gitlens",
+    "ms-vsliveshare.vsliveshare-pack"
+  ], //uncomment this to valdate JSON file correctly
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
   // Use 'postCreateCommand' to run commands after the container is created.
